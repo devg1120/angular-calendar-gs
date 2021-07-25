@@ -1,0 +1,137 @@
+import { Directive, ElementRef, HostListener , HostBinding, Input} from '@angular/core';
+
+@Directive({
+  selector: '[fullPage]'
+})
+export class FullpageDirective {
+	old_elClass : string = '';
+	old_elPos : string = '';
+	old_elTop : number = 0;
+	old_elLeft : number = 0;
+	old_elWidth : string = '';
+	old_elHeight : string = '';
+	old_elZIndex : number = 0;
+
+	constructor(private element: ElementRef) {
+	
+	   //element.nativeElement.style.backgroundColor = 'white';
+	   console.dir(element.nativeElement.style);
+           //this.resize();
+	}
+
+	//  @Input('fullPage_state') fullPage_state: boolean;
+	 @Input('fullPage') fullPage_state: boolean;
+  
+/*
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.resize();
+  }
+
+  @HostListener('load', ['$event'])
+  onLoad(event) {
+    this.resize();
+  }
+*/
+
+  @HostBinding('style.class')
+        elClass:string;
+
+  @HostBinding('style.position')
+        elPos:string;
+
+  @HostBinding('style.top.px')
+	elTop:number;
+
+  @HostBinding('style.left.px')
+	elLeft:number;
+
+	/*
+  @HostBinding('style.width.px')
+	elWidth:number;
+       
+  @HostBinding('style.height.px')
+	elHeight:number;
+	 */
+  @HostBinding('style.width')
+        elWidth:string;
+
+  @HostBinding('style.height')
+        elHeight:string;
+
+  @HostBinding('style.zIndex')
+	elZIndex:number;
+
+
+   ngOnChanges(change: any) {
+           console.log("full Page ngOnChanges:", this.fullPage_state);
+	   this.resize();
+
+   }
+
+  resize() {
+
+  if (this.fullPage_state){ 
+
+      this.old_elClass = this.elClass
+      this.old_elPos = this.elPos
+      this.old_elTop = this.elTop
+      this.old_elLeft = this.elLeft
+      this.old_elWidth = this.elWidth
+      this.old_elHeight = this.elHeight
+      this.old_elZIndex = this.elZIndex
+
+      this.elClass = 'angular-editor';
+      this.elPos = 'fixed';
+      //this.elPos = 'absolute';
+      //this.elPos = 'relative';
+      this.elTop = 0;
+      this.elLeft = 0;
+	  //this.elWidth =  window.innerWidth;
+	  //this.elHeight =  window.innerHeight;
+      this.elWidth =  '100%';
+      this.elHeight =  '100%';
+      this.elZIndex = 2147483647;
+  } else {
+      this.elClass = this.old_elClass
+      this.elPos = this.old_elPos
+      this.elTop = this.old_elTop
+      this.elLeft = this.old_elLeft
+      this.elWidth = this.old_elWidth
+      this.elHeight = this.old_elHeight
+      this.elZIndex = this.old_elZIndex
+
+  }
+	  //this.element.nativeElement.x = 0;
+	  //this.element.nativeElement.y = 0;
+	  /*
+    let bgwidth = this.element.nativeElement.style.width;
+    let bgheight = this.element.nativeElement.style.height;
+
+    let winwidth = window.innerWidth;
+    let winheight = window.innerHeight;
+
+      this.element.nativeElement.width = winwidth;
+      this.element.nativeElement.height = winheight;
+	  console.log("editor w:", bgwidth);
+	  console.log("editor h:", bgheight);
+	  console.log("window w:", winwidth);
+	  console.log("window h:", winheight);
+	   */
+	  /*
+    let widthratio = winwidth / bgwidth;
+    let heightratio = winheight / bgheight;
+
+    let widthdiff = heightratio * bgwidth;
+    let heightdiff = widthratio * bgheight;
+
+    if (heightdiff > winheight) {
+      this.element.nativeElement.width = winwidth;
+      this.element.nativeElement.height = heightdiff;
+    } else {
+      this.element.nativeElement.width = widthdiff;
+      this.element.nativeElement.height = winheight;
+    }
+	   */
+  }
+}

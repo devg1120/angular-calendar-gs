@@ -1,0 +1,103 @@
+import { Component, OnInit , AfterViewInit, ElementRef, ViewEncapsulation} from '@angular/core';
+//import * as jexcel_ from "jexcel";
+import  jexcel from "jexcel";
+import Spreadsheet from "x-data-spreadsheet";
+
+
+//const jexcel = jexcel_;
+
+@Component({
+  selector: 'angular-spreadsheet',
+  template: `
+          <div id="spreadsheet"></div>
+          <div id="jexcel"></div>
+  `,
+  
+  styleUrls: [
+  './angular-spreadsheet.component.scss',
+  ],
+
+  //encapsulation: ViewEncapsulation.None
+  //encapsulation: ViewEncapsulation.ShadowDom
+  
+})
+
+export class AngularSpreadsheetComponent implements OnInit ,AfterViewInit{
+
+  title = "CodeSandbox";
+  constructor(private el:ElementRef) {
+  }
+
+  
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+  
+    jexcel(document.getElementById("jexcel"), {
+      data: [[]],
+      columns: [
+        { type: "dropdown", width: "100px", source: ["Y", "N"] },
+        { type: "color", width: "100px", render: "square" }
+      ],
+      minDimensions: [10, 10]
+    });
+
+    
+  //var xs = Spreadsheet.x.spreadsheet('#spreadsheet', {showToolbar: true, showGrid: true})
+  var xs = new Spreadsheet('#spreadsheet', {showToolbar: true, showGrid: true,
+          view: {
+          //  height: () => document.documentElement.clientHeight,
+          //  width: () => document.documentElement.clientWidth,
+          //height: () => {return 500},
+          //width: () => {return 500},
+            height: () => this.el.nativeElement.offsetHeight,
+            width: () => this.el.nativeElement.offsetWidth,
+                }
+        })
+        .loadData([{
+          freeze: 'B3',
+          styles: [
+            {
+              bgcolor: '#f4f5f8',
+              textwrap: true,
+              color: '#900b09',
+              border: {
+                top: ['thin', '#0366d6'],
+                bottom: ['thin', '#0366d6'],
+                right: ['thin', '#0366d6'],
+                left: ['thin', '#0366d6'],
+              },
+            },
+          ],
+          merges: [
+            'C3:D4',
+          ],
+          rows: {
+            1: {
+              cells: {
+                0: { text: 'testingtesttestetst' },
+                2: { text: 'testing' },
+              },
+            },
+            2: {
+              cells: {
+                0: { text: 'render', style: 0 },
+                1: { text: 'Hello' },
+                2: { text: 'haha', merge: [1, 1] },
+              }
+            },
+            8: {
+              cells: {
+                8: { text: 'border test', style: 0 },
+              }
+            }
+          },
+        }]).change((cdata) => {
+          // console.log(cdata);
+          console.log(xs.getData());
+        });
+    
+
+    } // ngAfterViewInit()
+}

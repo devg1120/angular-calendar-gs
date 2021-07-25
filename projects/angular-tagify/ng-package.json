@@ -1,0 +1,10 @@
+{
+  "whitelistedNonPeerDependencies": ["."],
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+    "entryFile": "./src/public_api.ts",
+    "umdModuleIds": {
+      "@yaireo/tagify": "@yaireo/tagify"
+    }
+  }
+}

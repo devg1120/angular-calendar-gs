@@ -1,0 +1,48 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "angular-calendar": [
+        "./projects/angular-calendar/src"
+      ],
+      "angular-calendar/date-adapters/date-fns": [
+        "./projects/angular-calendar/src/date-adapters/date-fns"
+      ],
+      "angular-calendar/date-adapters/moment": [
+        "./projects/angular-calendar/src/date-adapters/moment"
+      ],
+      "@gs/angular-editor": [
+        "dist/angular-editor"
+      ],
+      "angular-spreadsheet": [
+        "dist/angular-spreadsheet"
+      ],
+      "angular-spreadsheet/*": [
+        "dist/angular-spreadsheet/*"
+      ],
+      "angular-jexcel": [
+        "dist/angular-jexcel"
+      ],
+      "angular-jexcel/*": [
+        "dist/angular-jexcel/*"
+      ]
+    },
+    "allowSyntheticDefaultImports": true
+  }
+}

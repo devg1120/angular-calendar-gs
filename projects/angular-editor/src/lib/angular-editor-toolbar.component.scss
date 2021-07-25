@@ -1,0 +1,37 @@
+@import "style";
+/*
+.angular-editor-toolbar {
+  margin: 0;
+  padding: 0;
+}
+
+.angular-editor-toolbar-set {
+  margin: 0;
+  padding: 0;
+}
+
+.angular-editor-button {
+  margin: 0;
+  padding: 0;
+    height: 26px;  
+    width: 24px;
+}
+
+.fa {
+  margin: 0;
+  padding: 0;
+
+}
+*/
+
+.select-button {
+  display: inline-block;
+  // border: #000066 solid;
+  // padding-right: 10px;
+  // padding: auto;
+  &.disabled {
+    cursor: pointer;
+    background-color: #f1f1f1;
+    transition: 0.2s ease;
+  }
+}

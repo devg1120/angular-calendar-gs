@@ -1,0 +1,905 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "demos": {
+      "root": "",
+      "sourceRoot": "projects/demos",
+      "projectType": "application",
+      "prefix": "mwl",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss",
+          "spec": false
+        },
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
+        },
+        "@schematics/angular:module": {
+          "spec": false
+        },
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/demos",
+            "index": "projects/demos/index.html",
+            "main": "projects/demos/main.ts",
+            "polyfills": "projects/demos/polyfills.ts",
+            "es5BrowserSupport": true,
+            "tsConfig": "projects/demos/tsconfig.app.json",
+            "assets": [
+              "projects/demos/favicon.ico",
+              "projects/demos/sw.js",
+              "projects/demos/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/demos/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/demos/environments/environment.ts",
+                  "with": "projects/demos/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demos:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demos:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/demos/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "angular-calendar": {
+      "root": "projects/angular-calendar",
+      "sourceRoot": "projects/angular-calendar/src",
+      "projectType": "library",
+      "prefix": "mwl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-calendar/tsconfig.lib.json",
+            "project": "projects/angular-calendar/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-calendar/test/entry.ts",
+            "tsConfig": "projects/angular-calendar/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-calendar/karma.conf.ts",
+            "sourceMap": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-calendar/tsconfig.lib.json",
+              "projects/angular-calendar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "angular-editor": {
+      "projectType": "library",
+      "root": "projects/angular-editor",
+      "sourceRoot": "projects/angular-editor/src",
+      "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-editor/tsconfig.lib.json",
+            "project": "projects/angular-editor/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-editor/src/test.ts",
+            "tsConfig": "projects/angular-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-editor/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-editor/tsconfig.lib.json",
+              "projects/angular-editor/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "angular-tagify": {
+      "projectType": "library",
+      "root": "projects/angular-tagify",
+      "sourceRoot": "projects/angular-tagify/src",
+      "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-tagify/tsconfig.lib.json",
+            "project": "projects/angular-tagify/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-tagify/src/test.ts",
+            "tsConfig": "projects/angular-tagify/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-tagify/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-tagify/tsconfig.lib.json",
+              "projects/angular-tagify/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "angular-spreadsheet": {
+      "projectType": "library",
+      "root": "projects/angular-spreadsheet",
+      "sourceRoot": "projects/angular-spreadsheet/src",
+      "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-spreadsheet/tsconfig.lib.json",
+            "project": "projects/angular-spreadsheet/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-spreadsheet/src/test.ts",
+            "tsConfig": "projects/angular-spreadsheet/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-spreadsheet/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-spreadsheet/tsconfig.lib.json",
+              "projects/angular-spreadsheet/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "angular-jexcel": {
+      "projectType": "library",
+      "root": "projects/angular-jexcel",
+      "sourceRoot": "projects/angular-jexcel/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-jexcel/tsconfig.lib.json",
+            "project": "projects/angular-jexcel/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-jexcel/src/test.ts",
+            "tsConfig": "projects/angular-jexcel/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-jexcel/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-jexcel/tsconfig.lib.json",
+              "projects/angular-jexcel/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "test-angular-split": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/test-angular-split",
+      "sourceRoot": "projects/test-angular-split/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/test-angular-split",
+            "index": "projects/test-angular-split/src/index.html",
+            "main": "projects/test-angular-split/src/main.ts",
+            "polyfills": "projects/test-angular-split/src/polyfills.ts",
+            "tsConfig": "projects/test-angular-split/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/test-angular-split/src/favicon.ico",
+              "projects/test-angular-split/src/assets"
+            ],
+            "styles": [
+              "projects/test-angular-split/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-angular-split/src/environments/environment.ts",
+                  "with": "projects/test-angular-split/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "test-angular-split:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "test-angular-split:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "test-angular-split:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-angular-split/src/test.ts",
+            "polyfills": "projects/test-angular-split/src/polyfills.ts",
+            "tsConfig": "projects/test-angular-split/tsconfig.spec.json",
+            "karmaConfig": "projects/test-angular-split/karma.conf.js",
+            "assets": [
+              "projects/test-angular-split/src/favicon.ico",
+              "projects/test-angular-split/src/assets"
+            ],
+            "styles": [
+              "projects/test-angular-split/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/test-angular-split/tsconfig.app.json",
+              "projects/test-angular-split/tsconfig.spec.json",
+              "projects/test-angular-split/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/test-angular-split/e2e/protractor.conf.js",
+            "devServerTarget": "test-angular-split:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-angular-split:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "test-ngx-widget-grid": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/test-ngx-widget-grid",
+      "sourceRoot": "projects/test-ngx-widget-grid/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/test-ngx-widget-grid",
+            "index": "projects/test-ngx-widget-grid/src/index.html",
+            "main": "projects/test-ngx-widget-grid/src/main.ts",
+            "polyfills": "projects/test-ngx-widget-grid/src/polyfills.ts",
+            "tsConfig": "projects/test-ngx-widget-grid/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/test-ngx-widget-grid/src/favicon.ico",
+              "projects/test-ngx-widget-grid/src/assets"
+            ],
+            "styles": [
+              "projects/test-ngx-widget-grid/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-ngx-widget-grid/src/environments/environment.ts",
+                  "with": "projects/test-ngx-widget-grid/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "test-ngx-widget-grid:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "test-ngx-widget-grid:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "test-ngx-widget-grid:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-ngx-widget-grid/src/test.ts",
+            "polyfills": "projects/test-ngx-widget-grid/src/polyfills.ts",
+            "tsConfig": "projects/test-ngx-widget-grid/tsconfig.spec.json",
+            "karmaConfig": "projects/test-ngx-widget-grid/karma.conf.js",
+            "assets": [
+              "projects/test-ngx-widget-grid/src/favicon.ico",
+              "projects/test-ngx-widget-grid/src/assets"
+            ],
+            "styles": [
+              "projects/test-ngx-widget-grid/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/test-ngx-widget-grid/tsconfig.app.json",
+              "projects/test-ngx-widget-grid/tsconfig.spec.json",
+              "projects/test-ngx-widget-grid/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/test-ngx-widget-grid/e2e/protractor.conf.js",
+            "devServerTarget": "test-ngx-widget-grid:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-ngx-widget-grid:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "test-ng-resizable-grid": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/test-ng-resizable-grid",
+      "sourceRoot": "projects/test-ng-resizable-grid/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/test-ng-resizable-grid",
+            "index": "projects/test-ng-resizable-grid/src/index.html",
+            "main": "projects/test-ng-resizable-grid/src/main.ts",
+            "polyfills": "projects/test-ng-resizable-grid/src/polyfills.ts",
+            "tsConfig": "projects/test-ng-resizable-grid/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/test-ng-resizable-grid/src/favicon.ico",
+              "projects/test-ng-resizable-grid/src/assets"
+            ],
+            "styles": [
+              "projects/test-ng-resizable-grid/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-ng-resizable-grid/src/environments/environment.ts",
+                  "with": "projects/test-ng-resizable-grid/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "test-ng-resizable-grid:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "test-ng-resizable-grid:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "test-ng-resizable-grid:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-ng-resizable-grid/src/test.ts",
+            "polyfills": "projects/test-ng-resizable-grid/src/polyfills.ts",
+            "tsConfig": "projects/test-ng-resizable-grid/tsconfig.spec.json",
+            "karmaConfig": "projects/test-ng-resizable-grid/karma.conf.js",
+            "assets": [
+              "projects/test-ng-resizable-grid/src/favicon.ico",
+              "projects/test-ng-resizable-grid/src/assets"
+            ],
+            "styles": [
+              "projects/test-ng-resizable-grid/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/test-ng-resizable-grid/tsconfig.app.json",
+              "projects/test-ng-resizable-grid/tsconfig.spec.json",
+              "projects/test-ng-resizable-grid/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/test-ng-resizable-grid/e2e/protractor.conf.js",
+            "devServerTarget": "test-ng-resizable-grid:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-ng-resizable-grid:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "test-ngx-widget-grid2": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/test-ngx-widget-grid2",
+      "sourceRoot": "projects/test-ngx-widget-grid2/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/test-ngx-widget-grid2",
+            "index": "projects/test-ngx-widget-grid2/src/index.html",
+            "main": "projects/test-ngx-widget-grid2/src/main.ts",
+            "polyfills": "projects/test-ngx-widget-grid2/src/polyfills.ts",
+            "tsConfig": "projects/test-ngx-widget-grid2/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/test-ngx-widget-grid2/src/favicon.ico",
+              "projects/test-ngx-widget-grid2/src/assets"
+            ],
+            "styles": [
+              "projects/test-ngx-widget-grid2/src/styles.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/default.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-ngx-widget-grid2/src/environments/environment.ts",
+                  "with": "projects/test-ngx-widget-grid2/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "test-ngx-widget-grid2:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "test-ngx-widget-grid2:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "test-ngx-widget-grid2:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-ngx-widget-grid2/src/test.ts",
+            "polyfills": "projects/test-ngx-widget-grid2/src/polyfills.ts",
+            "tsConfig": "projects/test-ngx-widget-grid2/tsconfig.spec.json",
+            "karmaConfig": "projects/test-ngx-widget-grid2/karma.conf.js",
+            "assets": [
+              "projects/test-ngx-widget-grid2/src/favicon.ico",
+              "projects/test-ngx-widget-grid2/src/assets"
+            ],
+            "styles": [
+              "projects/test-ngx-widget-grid2/src/styles.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/default.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/test-ngx-widget-grid2/tsconfig.app.json",
+              "projects/test-ngx-widget-grid2/tsconfig.spec.json",
+              "projects/test-ngx-widget-grid2/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/test-ngx-widget-grid2/e2e/protractor.conf.js",
+            "devServerTarget": "test-ngx-widget-grid2:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-ngx-widget-grid2:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "test-ngx-widget-grid3": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/test-ngx-widget-grid3",
+      "sourceRoot": "projects/test-ngx-widget-grid3/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/test-ngx-widget-grid3",
+            "index": "projects/test-ngx-widget-grid3/src/index.html",
+            "main": "projects/test-ngx-widget-grid3/src/main.ts",
+            "polyfills": "projects/test-ngx-widget-grid3/src/polyfills.ts",
+            "tsConfig": "projects/test-ngx-widget-grid3/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/test-ngx-widget-grid3/src/favicon.ico",
+              "projects/test-ngx-widget-grid3/src/assets"
+            ],
+            "styles": [
+              "projects/test-ngx-widget-grid3/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-ngx-widget-grid3/src/environments/environment.ts",
+                  "with": "projects/test-ngx-widget-grid3/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "test-ngx-widget-grid3:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "test-ngx-widget-grid3:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "test-ngx-widget-grid3:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/test-ngx-widget-grid3/src/test.ts",
+            "polyfills": "projects/test-ngx-widget-grid3/src/polyfills.ts",
+            "tsConfig": "projects/test-ngx-widget-grid3/tsconfig.spec.json",
+            "karmaConfig": "projects/test-ngx-widget-grid3/karma.conf.js",
+            "assets": [
+              "projects/test-ngx-widget-grid3/src/favicon.ico",
+              "projects/test-ngx-widget-grid3/src/assets"
+            ],
+            "styles": [
+              "projects/test-ngx-widget-grid3/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/test-ngx-widget-grid3/tsconfig.app.json",
+              "projects/test-ngx-widget-grid3/tsconfig.spec.json",
+              "projects/test-ngx-widget-grid3/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/test-ngx-widget-grid3/e2e/protractor.conf.js",
+            "devServerTarget": "test-ngx-widget-grid3:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "test-ngx-widget-grid3:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "demos"
+}
